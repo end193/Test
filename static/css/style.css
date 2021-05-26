@@ -1,0 +1,26 @@
+.panel {
+    border: 1px solid grey;
+    width: 400px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    padding: 1.2rem;
+    color: #445963;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.my-font {
+    color: red;
+}
+.small-h {
+    
+    height: 100px;
+    overflow: hidden;
+}
+.small-h:before {
+    content:"";
+    display:block;
+    height:20px;
+    position:relative;
+    top:80px;
+    background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%);
+}
