@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news',
     'landing',
+    'partfolio',
 ]
 
 MIDDLEWARE = [
@@ -129,4 +130,5 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR / 'media')

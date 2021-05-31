@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <h1> test portfolio </h1>
+<div style="display: flex; flex-direction: row;"> 
+{% for item in portfolio %}
+<div style="width: 200px; border: 1px solid green; padding: 10px;">
+    <div class="width: 200px;">
+        <img src="{{ item.image.url }}" alt="" width="200" height="150">
+        
+    </div>
+   <h4>{{ item.title }}</h4>
+   <p>{{ item.description }}</p>
+   <p>{{ item.date }}</p>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}
+
