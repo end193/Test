@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-6 col-sm-10 col-xs-12 animate__animated animate__fadeIn" style="display: flex; flex-direction: column; align-content: center; align-items: center; margin-left: auto; margin-right: auto;">
+    
+    {% if users.is_authenticated %}
+        <h3 style="text-align: center; margin-top: 10%; margin-bottom: 20px;"><b>Вы уже выполнили вход</b></h3>
+        <p class="mb-4"><b>Перейдите в</b> <a href="{% url 'users:account' %}" class="a_gray"><b>Личный кабинет</b></a></p>
+    {% else %}
+    
+        <form method="POST" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            {% csrf_token %}
+            <div style="display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap; width: 100%; justify-content: center; position: relative; margin-top: 10%; margin-bottom: 20px;">
+                <h3 style="color: white;"><b>Авторизация</b></h3>
+            </div>
+            <div class="form-floating mb-3" style="width: 100%;">
+                <input type="text" class="form-control" id="id_{{ form.username.name }}" name="{{ form.username.name }}">
+                <label for="id_{{ form.username.name }}" >Введите логин</label>
+                {% if form.username.errors %}
+                    <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem;  margin-bottom: 0;"><b>{{ form.username.errors.as_text }}</b></p>
+                {% endif %}
+                
+            </div>
+            <div class="password-block d-flex w-100">
+                <div class="form-floating w-100 mb-1">
+                    <input type="password" class="form-control" id="id_{{ form.password.name }}" name="{{ form.password.name }}" placeholder="Password" style="font-weight: bold;">
+                    <label for="id_{{ form.password.name }}" >Введите пароль</label>
+                    {% if form.password.errors %}
+                        <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem; margin-bottom: 0;"><b>{{ form.password.errors.as_text }}</b></p>
+                    {% endif %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary rounded-pill mt-3" style="height: 50px; width: 200px; color: white;">Войти</button>
+            
+        </form>
+    {% endif %}
+    
+</div>
+{% endblock content %}

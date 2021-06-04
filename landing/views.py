@@ -1,13 +1,25 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from news.models import News # Импорт модели из другого приложение
+from django.views.generic import ListView
+from .models import ServicesModel
+
 
 class LandingView(TemplateView):
     """ Landing View """
     
     template_name = "landing/landing.html"
+
+
+class ServicesListView(ListView):
+    """ Services ListView """
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['news'] = News.objects.all()[:5] # забираем последние 5 новостей
-        return context
+    template_name = "landing/services.html"
+    model = ServicesModel
+    context_object_name = 'services'
+    paginate_by = 5
+
+
+class ContactView(TemplateView):
+    """ Contact View """
+    
+    template_name = "landing/contact.html"

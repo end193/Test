@@ -1,36 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#" style="display: flex; align-items: center;">
+        <span class="material-icons" style="color: white; margin-right: 5px;">
+          public
+        </span><b style='color: red;'>IT<span style='margin-left: 5px; color: white;'>GLOBUS</span></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/">Главная</a>
+            <a class="nav-link {% if '/' == request.path %} active {% endif %}" aria-current="page" href="{% url 'landing:index' %}"><b>Главная</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://127.0.0.1:8000/partfolio/">Портфолио</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+            <a class="nav-link {% if 'news' in request.path %} active {% endif %}" aria-current="page" href="{% url 'news:index' %}"><b>Новости</b></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link {% if 'services' in request.path %} active {% endif %}" aria-current="page" href="{% url 'landing:services' %}"><b>Услуги</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'portfolio' in request.path %} active {% endif %}" href="{% url 'portfolio:index' %}"><b>Портфолио</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'contact' in request.path %} active {% endif %}" href="{% url 'landing:contact' %}"><b>Контакты</b></a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <ul class="navbar-nav align-items-center">
+        {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'users:register' %}"><b>Регистрация</b></a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:login' %}" type="button" style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 30px; width: 100px; color: #6c4577;" class="btn btn-light rounded-pill">Войти</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:account' %}"><b>Личный кабинет</b></a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'users:logout' %}" type="button" style="display: flex; flex-direction: row; align-items: center; justify-content: center; height: 30px; width: 100px; color: #6c4577;" class="btn btn-light rounded-pill">Выйти</a>
+          </li>
+        {% endif %}
+        </ul>
       </div>
     </div>
   </nav>

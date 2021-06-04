@@ -9,3 +9,8 @@ class News(models.Model):
    
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-date']
+        verbose_name = ('Новости')
+        verbose_name_plural = ('Новости')

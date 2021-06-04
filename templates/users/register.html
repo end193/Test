@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-6 col-sm-10 col-xs-12 animate__animated animate__fadeIn" style="display: flex; flex-direction: column; align-content: center; align-items: center; margin-left: auto; margin-right: auto;">
+    <div style="display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap; width: 100%; justify-content: center; position: relative; margin-top: 10%; margin-bottom: 20px;">
+        <h3 style="color: white;"><b>Регистрация</b></h3>
+    </div>
+    {% if users.is_authenticated %}
+        <h3 style="text-align: center; margin-top: 10%; margin-bottom: 20px;"><b>Вы уже зарегистрированы и прошли авторизацию</b></h3>
+        <p class="mb-4"><b>Перейдите в</b> <a href="{%" class="a_gray"><b>Личный кабинет</b></a></p>
+    {% else %}
+    <form method="POST" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+        {% csrf_token %}
+        <div class="form-floating mb-3" style="width: 100%;">
+            <input type="text" class="form-control" id="floatingInput" name="{{ form.username.name }}">
+            <label for="floatingInput">Введите логин</label>
+            {% if form.username.errors %}
+                <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem;"><b>{{ form.username.errors.as_text }}</b></p>
+            {% endif %}
+        </div>
+        <div class="password-block d-flex w-100">
+            <div class="form-floating w-100 mb-1">
+                <input type="password" class="form-control" id="id_{{ form.password1.name }}" name="{{ form.password1.name }}" placeholder="Password" style="font-weight: bold;">
+                <label for="id_{{ form.password1.name }}">Введите пароль</label>
+                {% if form.password1.errors %}
+                    <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem;"><b>{{ form.password1.errors.as_text }}</b></p>
+                {% else %}
+                    <p class="ml-2" style="color: rgb(182, 182, 182) !important; margin-left: 0.8rem;">{{ form.password1.help_text }}</p>
+                {% endif %}
+            </div>
+            
+        </div>
+        <div class="form-floating mb-3" style="width: 100%;">
+            <input type="password" class="form-control" id="id_{{ form.password2.name }}" name="{{ form.password2.name }}" placeholder="Password" style="font-weight: bold;">
+            <label for="id_{{ form.password2.name }}">Введите тот же пароль еще раз</label>
+            {% if form.password2.errors %}
+            <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem;"><b>{{ form.password2.errors.as_text }}</b></p>
+            {% endif %}
+        </div>
+        <p class="mb-3" style="text-align: center; color: white;">Нажимая кнопку "Зарегистрироваться" вы даете согласие на обработку персональных данных и принимаете условия "Пользовательского соглашения"</p>
+        <button type="submit" class="mb-3 btn btn-lg btn-secondary" style="width: 250px; border-radius: 50px;">Зарегистрироваться</button>
+    </form>
+    {% endif %}
+    
+</div>
+
+{% endblock content %}

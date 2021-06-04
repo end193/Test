@@ -1,14 +1,16 @@
 {% extends 'base/base.html' %}
+{% load static %} 
 {% block content %}
-{% for n in news %}
-       <div class="panel">
-               
-               <h4>{{ n.title }}</h4>
-               <p class="small-h">{{ n.content }} </p>
-               <div class="d-flex justify-content-between">
-                    <p>{{ n.date }} </p>
-                    <button type="button" class="btn btn-secondary">Читать...</button>
-               </div>
+<div style='min-height: 80vh;  width: 100%; color: white; display: flex; flex-direction: row; align-items: center; justify-content: space-around;'>
+        <div class="landing-title" style=' width: 50%; height: 100%; padding: 20px; max-width: 500px;'>
+                <div style='font-size: 2.6rem; font-weight: 700; line-height: 1.2em;'>Разработка аналитика</div>
+                <div style='font-size: 2.6rem; font-weight: 700; line-height: 1.2em;'>и интеграция IT систем</div>
+                <p class='mt-5 mb-3' style='font-size: 1.3rem;'>IT Globus — эксперт в разработке и интеграции сложных корпоративных систем: высоконагруженный back-end, легкий front-end, продуманный мобайл и умный ML</p>
+                <button type="button" class="btn btn-light rounded-pill mt-3" style="height: 50px; width: 200px; color: #6c4577;">Заказать услугу</button>
         </div>
-{% endfor %}
+        <div class="landing-title" style='width: 50%; height: 100%; padding: 20px;'>
+                <img src="{% static 'img/landing.png' %}" alt="landing" style="width: 100%; max-width: 400px;">
+        </div>
+
+</div>
 {% endblock content %}

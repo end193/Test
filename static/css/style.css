@@ -1,20 +1,60 @@
+body {
+    background-color: transparent;
+    background-image: linear-gradient(70deg, #b06ab3 0%, #3e2784 100%);
+    min-height: 100vh;
+}
+/* Маркировочный список */
+li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+ul {
+    margin-left: 10px; /* Отступ слева в браузере IE и Opera */
+    padding-left: 10px; /* Отступ слева в браузере Firefox, Safari, Chrome */
+    
+    color: white;
+}
+/* Navbar */
+.navbar {
+    background-color: transparent;
+    background: transparent;
+    border-width: 0px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .panel {
     border: 1px solid grey;
-    width: 400px;
+    width: 300px;
+    height: 250px;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
     padding: 1.2rem;
     color: #445963;
     margin-top:10px;
     margin-bottom: 10px;
+    background-color: white;
+}
+.panel-services {
+    border: 1px solid grey;
+    width: 300px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    padding: 1.2rem;
+    color: #445963;
+    margin-top:10px;
+    margin-bottom: 10px;
+    background-color: white;
 }
 .my-font {
     color: red;
 }
+.title-h {
+    font-size: 16px;
+}
 .small-h {
-    
     height: 100px;
     overflow: hidden;
+    font-size: 12px;
 }
 .small-h:before {
     content:"";

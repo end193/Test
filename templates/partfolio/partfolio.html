@@ -1,18 +1,19 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <h1> test portfolio </h1>
-<div style="display: flex; flex-direction: row;"> 
-{% for item in portfolio %}
-<div style="width: 200px; border: 1px solid green; padding: 10px;">
-    <div class="width: 200px;">
-        <img src="{{ item.image.url }}" alt="" width="200" height="150">
-        
-    </div>
-   <h4>{{ item.title }}</h4>
-   <p>{{ item.description }}</p>
-   <p>{{ item.date }}</p>
-</div>
-{% endfor %}
+<h2 style="color: white; margin-top: 50px; font-size: 18px;">Портфолио</h2>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: start; justify-content: space-between;">
+    {% for p in portfolio %}
+       <div class="panel-services" style="min-height: 375px; display: flex; flex-direction: column; align-content: stretch; justify-content: space-between;">
+            <div class="width: 100%; border: 1px solid green;">
+                <img src="{{ p.image.url }}" width="100%" alt="">
+            </div>
+            <h5 class="title-h mt-3">{{ p.title }}</h5>
+            <p class="small-h panel-content mt-1 mb-1">{{ p.description }} </p>
+            <div class="d-flex justify-content-center" style="font-size: 10px;">
+                <button type="button" class="btn rounded-pill" style="width: 170px; background-color: #6564c4; color: white;">Перейти на сайт</button>
+            </div>
+        </div>
+    {% endfor %}
 </div>
 {% endblock content %}
 

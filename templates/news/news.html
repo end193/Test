@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h2 style="color: white; margin-top: 50px; font-size: 18px;">Новости</h2>
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+    {% for n in news %}
+       <div class="panel" style="display: flex; flex-direction: column; align-content: stretch; justify-content: space-between;">
+               <h5 class="title-h">{{ n.title }}</h5>
+               <p class="small-h panel-content">{{ n.content }} </p>
+               <div class="d-flex justify-content-between" style="font-size: 10px;">
+                    <p>{{ n.date }} </p>
+                    <button type="button" class="btn rounded-pill" style="background-color: #6564c4; color: white;">Читать . . .</button>
+               </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

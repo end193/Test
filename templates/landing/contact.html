@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+{% load static %} 
+{% block content %}
+<h2 style="color: white; margin-top: 50px; font-size: 18px;">Контакты</h2>
+<div style='min-height: 60vh;  width: 100%; color: white; display: flex; flex-direction: row; align-items: center; justify-content: space-around;'>
+    <div class="landing-title" style=' width: 50%; height: 100%; padding: 10px; max-width: 500px;'>
+            <div style='font-size: 2.6rem; font-weight: 700; line-height: 1.2em;'>ООО "Глобус"</div>
+            <p class='mt-4 mb-2' style='font-size: 1.3rem;'>167000, Республика Коми, г.Сыктывкар, ул.Интернациональная д.92А, 2 этаж</p>
+            <div>
+                <p class='mt-3 mb-0' style='font-size: 1.3rem;'>телефон: +7(904)234-56-78</p>
+                <p class='mb-4' style='font-size: 1.3rem;'>email: globus@support.ru</p>
+            </div>
+            <button type="button" class="btn btn-light rounded-pill mt-3" style="height: 50px; width: 200px; color: #6c4577;">Заказать услугу</button>
+    </div>
+    <div class="landing-title" style='width: 50%; height: 100%; padding: 20px;'>
+            <img src="{% static 'img/contact.png' %}" alt="landing" style="width: 100%; max-width: 400px;">
+    </div>
+
+</div>
+{% endblock content %}
