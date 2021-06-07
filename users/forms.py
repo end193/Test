@@ -3,6 +3,8 @@ from django import forms
 from django.contrib.auth.forms import  UserCreationForm, UserChangeForm
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
+from landing.models import ServicesModel
+from .models import Order
 
 
 class RegisterUserForm(forms.ModelForm):
@@ -40,3 +42,21 @@ class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+
+class OrderForm(forms.ModelForm):
+    """ Форма для заказа услуги """
+
+    service = forms.ModelChoiceField(queryset=ServicesModel.objects.none())
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['service'] = forms.ModelChoiceField(
+            queryset=ServicesModel.objects.all(),
+            widget=forms.Select(attrs={'class':'custom-select'}), empty_label=None,
+            help_text='Выберите услугу', required=True
+        )
+    
+    class Meta:
+        model = Order
+        fields = ['service', 'description', 'phone_number']

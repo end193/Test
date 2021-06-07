@@ -1,7 +1,48 @@
 {% extends 'base/base.html' %}
 {% block content %}
 <h2 style="color: white; margin-top: 50px; font-size: 18px;">Личный кабинет</h2>
-<div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+<div class="panel-orders" style="">
+    <form action="{% url 'users:create' %}">
+        <button class='btn btn-success rounded-pill mb-5 mt-2' style="width: 180px;" type="submit">+ Добавить заказ</button>
+    </form>
+    {% if order_list %}
+    <h2 style="color: black; font-size: 18px;">Мои заказы</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">Номер</th>
+            <th class="text-center" scope="col">Услуга</th>
+            <th class="text-center" scope="col">Описание заказа</th>
+            <th class="text-center" scope="col">Телефон</th>
+            <th class="text-center" scope="col">Дата</th>
+            <th class="text-center" scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for order in order_list %}
+          <tr>
+            <th scope="row" class="align-middle">{{ forloop.counter }}</th>
+            <td class="align-middle">{{ order.service.title }}</td>
+            <td class="align-middle">{{ order.description }}</td>
+            <td class="align-middle">{{ order.phone_number }}</td>
+            <td class="align-middle">{{ order.date }}</td>
+            <td class="align-middle">
+                <form method="POST" action="{% url 'users:delete' pk=order.pk %}">
+					{% csrf_token %}<button class='btn btn-danger rounded-pill' type="submit" value="DELETE">Удалить</button>
+				</form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h2 style="color: black; font-size: 18px;">Заказов еще нет, нажмите на кнопку добавить заказ</h2>
+
+      {% endif %}
+    
+        
+        
+        
     
 </div>
 {% endblock content %}
