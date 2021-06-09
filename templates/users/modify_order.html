@@ -1,11 +1,35 @@
 {% extends 'base/base.html' %}
 {% block content %}
-  <h2>{{ name }}</h2>
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <div class="submit-row">
-      <button type="submit" class="btn">{{ name }}</button>
-    </div>
+<div class="col-md-6 col-sm-10 col-xs-12 animate__animated animate__fadeIn" style="display: flex; flex-direction: column; align-content: center; align-items: center; margin-left: auto; margin-right: auto;">
+  <div style="display: flex; flex-direction: row; align-items: center; flex-wrap: nowrap; width: 100%; justify-content: center; position: relative; margin-top: 10%; margin-bottom: 20px;">
+      <h3 style="color: white;"><b>{{ name }}</b></h3>
+  </div>
+  {% if users.is_authenticated %}
+      <h3 style="text-align: center; margin-top: 10%; margin-bottom: 20px;"><b>Для заказа услуги Вам необходимо пройти авторизацию или зарегистрироваться</b></h3>
+  {% else %}
+
+  <form method="POST" action="{% url 'users:create' %}" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      {% csrf_token %}
+      <select class="form-select form-select-lg mb-3" id="id_{{ form.service.name }}" name="{{ form.service.name }}" aria-label=".form-select-lg пример">
+        {% for serv in form.service.field.choices.queryset %}
+        <option value="{{ serv.id }}" {% if forloop.first %} selected {% endif%}>{{ serv.title }}</option>
+        {% endfor %}
+      </select>
+      <div class="form-floating mb-3" style="width: 100%;">
+        <textarea id="id_{{ form.description.name }}" name="{{ form.description.name }}" class="form-control" placeholder="Leave a comment here" style="height: 200px;" rows="10"></textarea>
+        <label for="id_{{ form.description.name }}">Описание заказа</label>
+      </div>
+      <div class="form-floating mb-3" style="width: 100%;">
+          <input type="text" class="form-control" id="id_{{ phone_number}}" name="{{ form.phone_number.name }}">
+          <label for="id_{{ phone_number}}">Введите номер телефона</label>
+          {% if form.phone_number.errors %}
+              <p class="ml-2" style="color: white; font-size: 0.8rem; margin-left: 0.8rem;"><b>{{ form.phone_number.errors.as_text }}</b></p>
+          {% endif %}
+      </div>
+      <button type="submit" class="mb-3 btn btn-lg btn-primary" style="width: 250px; border-radius: 50px;">Сделать заказ</button>
   </form>
+  {% endif %}
+  
+</div>
+
 {% endblock %}

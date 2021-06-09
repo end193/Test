@@ -8,7 +8,9 @@
                <p class=" panel-content" style="min-height: 216px;">{{ n.description }} </p>
                <div class="d-flex justify-content-between" style="font-size: 10px;">
                     <p>{{ n.date }} </p>
-                    <button type="button" class="btn rounded-pill" style="width: 150px; background-color: #6564c4; color: white;">Заказать услугу</button>
+                    <form action="{% url 'users:create' %}">
+                    <button type="submit" class="btn rounded-pill" style="width: 150px; background-color: #6564c4; color: white;">Заказать услугу</button>
+                    </form>
                </div>
         </div>
     {% endfor %}

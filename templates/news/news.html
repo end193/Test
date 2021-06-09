@@ -4,14 +4,43 @@
 <div style="display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between;">
     {% for n in news %}
        <div class="panel" style="display: flex; flex-direction: column; align-content: stretch; justify-content: space-between;">
-               <h5 class="title-h">{{ n.title }}</h5>
-               <p class="small-h panel-content">{{ n.content }} </p>
+               <h5 class="title-h" id='{{ n.id }}_title'>{{ n.title }}</h5>
+               <p class="small-h panel-content" id='{{ n.id }}_content'>{{ n.content }} </p>
                <div class="d-flex justify-content-between" style="font-size: 10px;">
                     <p>{{ n.date }} </p>
-                    <button type="button" class="btn rounded-pill" style="background-color: #6564c4; color: white;">Читать . . .</button>
+                    <button type="button" class="btn rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop" 
+                    style="background-color: #6564c4; color: white;"
+                    onclick="getNews({'id': '{{ n.id }}'})">Читать . . .</button>
                </div>
         </div>
     {% endfor %}
 </div>
-
+ 
+  <!-- Модальное окно -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel"></h5>
+        </div>
+        <div class="modal-body" id='modalTextContent'>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    jQuery(function () {
+        jQuery("#staticBackdrop").appendTo("body");
+    });
+  </script>
+  <script>
+      function getNews(data){
+        staticBackdropLabel.innerHTML = $('#' + data.id + '_title' ).text();
+        modalTextContent.innerHTML = $('#' + data.id + '_content' ).text();
+      }
+  </script>
 {% endblock content %}

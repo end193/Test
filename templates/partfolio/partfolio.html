@@ -10,7 +10,9 @@
             <h5 class="title-h mt-3">{{ p.title }}</h5>
             <p class="small-h panel-content mt-1 mb-1">{{ p.description }} </p>
             <div class="d-flex justify-content-center" style="font-size: 10px;">
-                <button type="button" class="btn rounded-pill" style="width: 170px; background-color: #6564c4; color: white;">Перейти на сайт</button>
+            <form action="{{ p.url_address }}">
+                <button type="submit" class="btn rounded-pill" style="width: 170px; background-color: #6564c4; color: white;">Перейти на сайт</button>
+            </form>
             </div>
         </div>
     {% endfor %}
