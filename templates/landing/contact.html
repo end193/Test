@@ -10,8 +10,10 @@
                 <p class='mt-3 mb-0' style='font-size: 1.3rem;'>телефон: +7(904)234-56-78</p>
                 <p class='mb-4' style='font-size: 1.3rem;'>email: globus@support.ru</p>
             </div>
-            <button type="button" class="btn btn-light rounded-pill mt-3" style="height: 50px; width: 200px; color: #6c4577;">Заказать услугу</button>
-    </div>
+            <form action="{% url 'users:create' %}">
+                <button type="submit" class="btn btn-light rounded-pill mt-3" style="height: 50px; width: 200px; color: #6c4577;">Заказать услугу</button>
+        </form>
+        </div>
     <div class="landing-title" style='width: 50%; height: 100%; padding: 20px;'>
             <img src="{% static 'img/contact.png' %}" alt="landing" style="width: 100%; max-width: 400px;">
     </div>

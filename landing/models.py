@@ -7,7 +7,7 @@ class ServicesModel(models.Model):
     title = models.CharField('Наименование услуги', max_length=30)
     description = models.CharField('Описание услуги', max_length=300)
 
-    def str(self):
+    def __str__(self):
         return self.title
 
     class Meta:

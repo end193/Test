@@ -2,9 +2,15 @@
 {% block content %}
 <h2 style="color: white; margin-top: 50px; font-size: 18px;">Личный кабинет</h2>
 <div class="panel-orders" style="">
+  {% if user.is_superuser %}
+    <form action="/admin/">
+        <button type="submit" class="btn btn-primary rounded-pill" style="width: 230px;">Административная панель</button>
+    </form>
+  {% endif %}
     <form action="{% url 'users:create' %}">
         <button class='btn btn-success rounded-pill mb-5 mt-2' style="width: 180px;" type="submit">+ Добавить заказ</button>
     </form>
+   
     {% if order_list %}
     <h2 style="color: black; font-size: 18px;">Мои заказы</h2>
     <table class="table">
@@ -15,6 +21,7 @@
             <th class="text-center" scope="col">Описание заказа</th>
             <th class="text-center" scope="col">Телефон</th>
             <th class="text-center" scope="col">Дата</th>
+            <th class="text-center" scope="col">Статус заказа</th>
             <th class="text-center" scope="col"></th>
           </tr>
         </thead>
@@ -26,6 +33,7 @@
             <td class="align-middle">{{ order.description }}</td>
             <td class="align-middle">{{ order.phone_number }}</td>
             <td class="align-middle">{{ order.date }}</td>
+            <td class="align-middle">{{ order.status.title }}</td>
             <td class="align-middle">
                 <form method="POST" action="{% url 'users:delete' pk=order.pk %}">
 					{% csrf_token %}<button class='btn btn-danger rounded-pill' type="submit" value="DELETE">Удалить</button>
